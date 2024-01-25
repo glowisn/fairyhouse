@@ -8,7 +8,7 @@ import supabase from "@/utils/supabaseClient";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-export default function Post() {
+export default function NewPost() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -76,6 +76,7 @@ async function save(title: string, content: string, routeHome: () => void ){
   }
 
   console.log("save with title: ", title, "content: ", content);
-  
+
+  // TODO : redirect to post page
   routeHome();
 }
