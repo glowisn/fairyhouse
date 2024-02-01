@@ -1,0 +1,5 @@
+.ql-editor {
+  @apply text-lg; 
+  @apply h-[400px];
+  @apply overflow-y-hidden;
+}

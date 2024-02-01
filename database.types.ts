@@ -9,18 +9,36 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      test: {
+      post: {
         Row: {
-          data: string | null
+          content: string | null
+          created_at: string | null
+          deleted_at: string | null
           id: number
+          title: string
+          updated_at: string | null
+          user_id: number | null
+          views: number | null
         }
         Insert: {
-          data?: string | null
+          content?: string | null
+          created_at?: string | null
+          deleted_at?: string | null
           id?: number
+          title: string
+          updated_at?: string | null
+          user_id?: number | null
+          views?: number | null
         }
         Update: {
-          data?: string | null
+          content?: string | null
+          created_at?: string | null
+          deleted_at?: string | null
           id?: number
+          title?: string
+          updated_at?: string | null
+          user_id?: number | null
+          views?: number | null
         }
         Relationships: []
       }

@@ -5,6 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import { PostgrestError } from "@supabase/supabase-js";
 
 import supabase from "@/utils/supabaseClient";
+import { InsertPost } from "@/types/types";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -52,18 +53,21 @@ async function save(title: string, content: string, routeHome: () => void ){
     return;
   }
   try {
+    const newPostInstance : InsertPost = {
+      user_id: null,
+      title: title,
+      content: content,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      deleted_at: null,
+      views: 0,
+    }
+
     // TODO : set user
     const user = undefined;
   
     // insert to DB
-    const { error }: {error: PostgrestError | null} = await supabase.from("post").insert({
-      user_id: null,
-      title: title,
-      content: content,
-      created_at: new Date(),
-      updated_at: new Date(),
-      deleted_at: null,
-    });
+    const { error }: {error: PostgrestError | null} = await supabase.from("post").insert([newPostInstance]);
   
     if (error) {
       console.error('Error inserting post:', error);
