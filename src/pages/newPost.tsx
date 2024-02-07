@@ -2,10 +2,8 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import { PostgrestError } from "@supabase/supabase-js";
 
-import supabase from "@/utils/supabaseClient";
-import { InsertPost } from "@/types/types";
+import { save } from "../apis/save";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -14,7 +12,9 @@ export default function NewPost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const routeHome = () => router.push("/");
+  const routePost = (id: number) => {
+    router.push(`/post/${id}`);
+  };
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function NewPost() {
         <QuillEditor value={content} setValue={setContent} />
         <button
           onClick={() => {
-            save(title, content, routeHome);
+            save(title, content, routePost);
           }}
           className="border border-gray-300 p-2 mb-4 w-1/3 m-auto block bg-white"
         >
@@ -43,44 +43,11 @@ export default function NewPost() {
   );
 }
 
-function QuillEditor({ value, setValue }: any) {
-  return <ReactQuill theme="snow" value={value} onChange={setValue} />;
+interface QuillEditorProps {
+  value: string;
+  setValue: (value: string) => void;
 }
 
-async function save(title: string, content: string, routeHome: () => void ){
-  if (title === "" || content === "") {
-    alert("제목과 내용을 입력해주세요.");
-    return;
-  }
-  try {
-    const newPostInstance : InsertPost = {
-      user_id: null,
-      title: title,
-      content: content,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      deleted_at: null,
-      views: 0,
-    }
-
-    // TODO : set user
-    const user = undefined;
-  
-    // insert to DB
-    const { error }: {error: PostgrestError | null} = await supabase.from("post").insert([newPostInstance]);
-  
-    if (error) {
-      console.error('Error inserting post:', error);
-      alert("서버 에러로 인해 글쓰기에 실패했습니다.");
-      return;
-    }
-  } catch (error) {
-    console.error('Error inserting post:', error);
-    alert("알 수 없는 오류에 의해 글쓰기에 실패했습니다.");
-  }
-
-  console.log("save with title: ", title, "content: ", content);
-
-  // TODO : redirect to post page
-  routeHome();
+function QuillEditor({ value, setValue }: QuillEditorProps) {
+  return <ReactQuill theme="snow" value={value} onChange={setValue} />;
 }
