@@ -12,8 +12,8 @@ export default function PostPage() {
   const router = useRouter();
   const [post, setPost] = useState<Post>();
 
-  const goBack = () => {
-    router.back();
+  const goList = () => {
+    router.push("/");
   };
 
   useEffect(() => {
@@ -35,8 +35,8 @@ export default function PostPage() {
         ) : (
           <div>Loading...</div>
         )}
-        <button className="border border-black p-2 mb-4 w-1/3 m-auto block " onClick={goBack}>
-          Go back
+        <button className="border border-black p-2 mb-4 w-1/3 m-auto block " onClick={goList}>
+          Go List
         </button>
       </div>
     </>

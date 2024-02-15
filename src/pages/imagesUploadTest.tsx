@@ -16,9 +16,11 @@ export default function ImagesUploadTest() {
     <>
       <div className="h-screen mx-auto mt-10 mb-10">
         <h1 className="text-5xl m-16">Images Upload Test</h1>
-        <div className="flex">
+        <div className="flex border border-black w-auto h-auto min-h-56">
           {
-            selectedImages.map((image, index) => (
+            selectedImages.length === 0
+            ? <h2 className="flex items-center m-auto text-2xl">Images Preview</h2>
+            : selectedImages.map((image, index) => (
               <div key={index} className="w-1/4 h-[250px] flex items-center justify-center">
                 <Image
                   src={URL.createObjectURL(image)}
