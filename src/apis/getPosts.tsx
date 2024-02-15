@@ -1,5 +1,5 @@
-import { Post } from "@/types/types";
 import { supabase } from "../utils/supabaseClient";
+import { Post } from "@/types/types";
 
 export async function getPosts() : Promise<Post[]> {
   const { data, error } = await supabase.from("post").select();

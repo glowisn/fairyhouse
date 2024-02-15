@@ -6,9 +6,47 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
+      image: {
+        Row: {
+          created_at: string
+          file_type: string | null
+          id: number
+          image_name: string | null
+          image_URL: string
+          order: number
+          post_id: number | null
+        }
+        Insert: {
+          created_at?: string
+          file_type?: string | null
+          id?: number
+          image_name?: string | null
+          image_URL: string
+          order?: number
+          post_id?: number | null
+        }
+        Update: {
+          created_at?: string
+          file_type?: string | null
+          id?: number
+          image_name?: string | null
+          image_URL?: string
+          order?: number
+          post_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_image_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "post"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       post: {
         Row: {
           content: string | null
