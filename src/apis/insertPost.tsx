@@ -1,5 +1,7 @@
-import supabase from "@/utils/supabaseClient";
 import { PostgrestError } from "@supabase/supabase-js";
+
+
+import supabase from "@/utils/supabaseClient";
 import { InsertPost, Post } from "@/types/types";
 
 export async function insertPost(newPostInstance: InsertPost): Promise<Post[] | null> {

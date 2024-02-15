@@ -122,6 +122,14 @@ export default function NewPost() {
             >
               글쓰기
             </button>
+            <button
+              onClick={() => {
+                router.push("/");
+              }}
+              className="border border-gray-300 p-2 mb-4 w-1/3 m-auto block bg-white"
+            >
+              돌아가기
+            </button>
           </div>
         )}
       </div>
