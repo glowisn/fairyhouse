@@ -22,20 +22,22 @@ export default function PostPage() {
   };
 
   useEffect(() => {
-    try {
-      getPost(Number(id)).then((post) => setPost(post));
-      getImage(Number(id)).then((imageObj)=>{
-        if(imageObj && imageObj[0]){
-          getPublicUrl(imageObj[0].image_URL).then((url)=>{
-            setImageUrl(url.publicUrl);
-          })
-        }
-      });
-      console.log(imageUrl);
-    } catch (error) {
-      console.log(error);
+    const currentId = id;
+    if (currentId) {
+      try {
+        getPost(Number(currentId)).then((post) => setPost(post));
+        getImage(Number(currentId)).then((imageObj) => {
+          if (imageObj && imageObj[0]) {
+            getPublicUrl(imageObj[0].image_URL).then((url) => {
+              setImageUrl(url.publicUrl);
+            });
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, [id,imageUrl]);
+  }, [id, imageUrl]);
 
   return (
     <>
@@ -43,9 +45,8 @@ export default function PostPage() {
         {post ? (
           <>
             <h1 className=" text-3xl m-10">{post.title}</h1>
-            {
-              imageUrl
-              ? <div className="flex border border-black w-auto h-auto min-h-56">
+            {imageUrl ? (
+              <div className="flex border border-black w-auto h-auto min-h-56">
                 <div className="flex items-center justify-center">
                   <Image
                     src={imageUrl}
@@ -57,8 +58,7 @@ export default function PostPage() {
                   />
                 </div>
               </div>
-              : null
-            }
+            ) : null}
             <ReactQuill value={post.content || ""} readOnly={true} theme={"bubble"} className="ql-editor" />
           </>
         ) : (
