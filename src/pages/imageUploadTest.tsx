@@ -11,6 +11,16 @@ export default function ImageUploadTest() {
     }
   };
 
+  const uploadImage = async (image: File) => {
+    // name with unix time, need refactor
+    const { data, error } = await supabase.storage.from("images").upload(`public/${(new Date()).getTime()}`, image);
+    if (error) {
+      console.error("Error uploading image: ", error);
+    } else {
+      console.log("Image uploaded successfully: ", data);
+    }
+  };
+
   return (
     <>
       <div className="h-screen mx-auto mt-10 mb-10">
@@ -31,6 +41,18 @@ export default function ImageUploadTest() {
         </div>
         <div className="m-12">
           <input type="file" id="image" name="image" accept="image/*" onChange={handleImageChange} />
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              if (selectedImage) {
+                uploadImage(selectedImage);
+              }
+            }}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Upload Image
+          </button>
         </div>
       </div>
     </>
