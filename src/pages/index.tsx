@@ -9,7 +9,7 @@ export default function Page() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    getPosts().then((posts) => setPosts(posts));
+    getPosts(0,4).then((posts) => setPosts(posts));
   }, []);
 
   const goPost = (id: number) => {
