@@ -41,7 +41,7 @@ export default function PostPage() {
 
   return (
     <>
-      <div className="h-screen mx-auto mt-10 mb-10">
+      <div className="h-screen mx-auto flex flex-col">
         {post ? (
           <>
             <h1 className=" text-3xl m-10">{post.title}</h1>
@@ -59,7 +59,7 @@ export default function PostPage() {
                 </div>
               </div>
             ) : null}
-            <ReactQuill value={post.content || ""} readOnly={true} theme={"bubble"} className="ql-editor" />
+            <ReactQuill value={post.content || ""} readOnly={true} theme={"bubble"} className="ql-editor flex-1" />
           </>
         ) : (
           <div>Loading...</div>
