@@ -79,12 +79,12 @@ export default function NewPost() {
 
   return (
     <>
-      <div className="container mx-auto mt-10 mb-10 h-screen">
+      <div className="container mx-auto">
         {uploading ? (
           <div className="flex text-3xl items-center m-auto"> Uploading... </div>
         ) : (
           <div>
-            <h1 className=" text-2xl font-bold">글쓰기</h1>
+            <h1 className="text-2xl font-bold m-4 ">글쓰기</h1>
             <input
               type="text"
               value={title}
