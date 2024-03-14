@@ -29,13 +29,10 @@ export default function Page() {
 
   return (
     <>
-      <div className="mx-auto bg-gray-100 min-h-screen p-10">
-        <div className="flex">
-          <div className="w-40">
-            <div className="mb-10"></div>
-          </div>
-          <div>
-            <Image src={"/logo.png"} width={200} height={100} alt="logo" />
+      <div className="max-w-[64rem] mx-auto bg-gray-100 min-h-screen p-10">
+      <Image src={"/logo.png"} width={200} height={100} alt="logo" />
+        <div className="flex justify-between">
+          <div className="mr-[4rem]">
             {listElements.map((listElement: ListElement) => (
               <li
                 className="border border-black list-none p-2 flex justify-between bg-white mb-4 rounded shadow"
@@ -66,7 +63,7 @@ export default function Page() {
               글쓰기
             </button>
           </div>
-          <div className="w-40">
+          <div className="w-[16rem] bg-blue-300">
             <div className="mb-10"></div>
           </div>
         </div>
