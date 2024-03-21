@@ -37,8 +37,8 @@ export async function getPosts(
       .from("post")
       .select(`id,title,created_at,image(image_URL,order)`)
       .gte("id", from)
-      .lte("id", to)
-      .order("id", { ascending: false });
+      .lt("id", to)
+      .order("id", { ascending: true });
 
   if (error) {
     console.log(error);
