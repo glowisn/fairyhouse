@@ -1,4 +1,4 @@
-import { ReactQuill } from "../pages/newPost";
+import { ReactQuill } from "../pages/NewPost";
 
 interface QuillEditorProps {
   value: string;
