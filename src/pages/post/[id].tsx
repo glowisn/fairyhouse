@@ -59,12 +59,20 @@ export default function PostPage() {
                 </div>
               </div>
             ) : null}
-            <ReactQuill value={post.content || ""} readOnly={true} theme={"bubble"} className="ql-editor flex-1" />
+            <ReactQuill
+              value={post.content || ""}
+              readOnly={true}
+              theme={"bubble"}
+              className="ql-editor flex-1"
+            />
           </>
         ) : (
           <div>Loading...</div>
         )}
-        <button className="border border-black p-2 mb-4 w-1/3 m-auto block " onClick={goList}>
+        <button
+          className="border border-black p-2 mb-4 w-1/3 m-auto block"
+          onClick={goList}
+        >
           Go List
         </button>
       </div>

@@ -21,7 +21,11 @@ export default function NewPost() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
-  const save = async (title: string, content: string, route: (id: number) => void) => {
+  const save = async (
+    title: string,
+    content: string,
+    route: (id: number) => void,
+  ) => {
     if (title === "" || content === "") {
       alert("제목과 내용을 입력해주세요.");
       return;
@@ -81,7 +85,10 @@ export default function NewPost() {
     <>
       <div className="container mx-auto">
         {uploading ? (
-          <div className="flex text-3xl items-center m-auto"> Uploading... </div>
+          <div className="flex text-3xl items-center m-auto">
+            {" "}
+            Uploading...{" "}
+          </div>
         ) : (
           <div>
             <h1 className="text-2xl font-bold m-4 ">글쓰기</h1>
@@ -96,7 +103,9 @@ export default function NewPost() {
             ></input>
             <div className="flex border border-black w-auto h-auto min-h-56">
               {selectedImage === null ? (
-                <h2 className="flex items-center m-auto text-2xl">Images Preview</h2>
+                <h2 className="flex items-center m-auto text-2xl">
+                  Images Preview
+                </h2>
               ) : (
                 <div className="flex items-center justify-center">
                   <Image
@@ -111,7 +120,13 @@ export default function NewPost() {
               )}
             </div>
             <div className="m-4">
-              <input type="file" id="image" name="image" accept="image/*" onChange={handleImageChange} />
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
             </div>
             <QuillEditor value={content} setValue={setContent} />
             <button

@@ -7,7 +7,12 @@ export async function getPost(id: number): Promise<Post> {
   let data, error;
 
   while (retries < maxRetries) {
-    ({ data, error } = await supabase.from("post").select().eq("id", id).limit(1).single());
+    ({ data, error } = await supabase
+      .from("post")
+      .select()
+      .eq("id", id)
+      .limit(1)
+      .single());
 
     if (error) {
       console.error(`Attempt ${retries + 1} failed. Retrying...`);

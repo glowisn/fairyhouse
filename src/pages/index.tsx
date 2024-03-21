@@ -30,7 +30,7 @@ export default function Page() {
   return (
     <>
       <div className="max-w-[64rem] mx-auto bg-gray-100 min-h-screen p-10">
-      <Image src={"/logo.png"} width={200} height={100} alt="logo" />
+        <Image src={"/logo.png"} width={200} height={100} alt="logo" />
         <div className="flex justify-between">
           <div className="mr-[4rem]">
             {listElements.map((listElement: ListElement) => (
@@ -38,9 +38,14 @@ export default function Page() {
                 className="border border-black list-none p-2 flex justify-between bg-white mb-4 rounded shadow"
                 key={listElement.id}
               >
-                <a className="w-full text-gray-700" onClick={() => goPost(listElement.id)}>
+                <a
+                  className="w-full text-gray-700"
+                  onClick={() => goPost(listElement.id)}
+                >
                   <h2 className="text-xl">{listElement.title}</h2>
-                  <p className="text-sm text-gray-500">{formatTimeAgo(listElement.created_at ?? "")}</p>
+                  <p className="text-sm text-gray-500">
+                    {formatTimeAgo(listElement.created_at ?? "")}
+                  </p>
                   {listElement.image.length > 0 && (
                     <div className="flex justify-center">
                       <Image

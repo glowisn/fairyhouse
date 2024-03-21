@@ -4,7 +4,6 @@ import { supabase } from "../utils/supabaseClient";
 
 import { getPublicUrl } from "./getPublicURL";
 
-
 export type ListElement = {
   id: number;
   title: string;
@@ -26,13 +25,20 @@ type OriginalListElement = {
   }[];
 };
 
-export async function getPosts(from: number, to: number): Promise<ListElement[]> {
-  const { data, error }: { data:OriginalListElement[] | null; error: PostgrestError | null } = await supabase
-    .from("post")
-    .select(`id,title,created_at,image(image_URL,order)`)
-    .gte("id", from)
-    .lte("id", to)
-    .order("id", { ascending: false });
+export async function getPosts(
+  from: number,
+  to: number,
+): Promise<ListElement[]> {
+  const {
+    data,
+    error,
+  }: { data: OriginalListElement[] | null; error: PostgrestError | null } =
+    await supabase
+      .from("post")
+      .select(`id,title,created_at,image(image_URL,order)`)
+      .gte("id", from)
+      .lte("id", to)
+      .order("id", { ascending: false });
 
   if (error) {
     console.log(error);
@@ -44,13 +50,21 @@ export async function getPosts(from: number, to: number): Promise<ListElement[]>
       const image = await Promise.all(
         element.image.map(async (image) => {
           const publicURL = await getPublicUrl(image.image_URL);
-          return { image_URL: image.image_URL, order: image.order, publicURL: publicURL.publicUrl };
-        })
+          return {
+            image_URL: image.image_URL,
+            order: image.order,
+            publicURL: publicURL.publicUrl,
+          };
+        }),
       );
-      return { id: element.id, title: element.title, created_at: element.created_at, image: image };
-    })
+      return {
+        id: element.id,
+        title: element.title,
+        created_at: element.created_at,
+        image: image,
+      };
+    }),
   );
 
   return listElements;
-  
 }

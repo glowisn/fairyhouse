@@ -6,5 +6,4 @@ export type InsertPost = Database["public"]["Tables"]["post"]["Insert"];
 export type Image = Database["public"]["Tables"]["image"]["Row"];
 export type InsertImage = Database["public"]["Tables"]["image"]["Insert"];
 
-
-export type PublicURL = { publicUrl: string; };
+export type PublicURL = { publicUrl: string };
