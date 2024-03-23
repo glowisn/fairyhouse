@@ -41,7 +41,7 @@ export default function Lobby() {
   return (
     <>
       <div className="max-w-[64rem] mx-auto bg-gray-100 min-h-screen p-10">
-        <Image src={"/logo.png"} width={200} height={100} alt="logo" />
+        <h1 className="text-4xl font-bold mb-4">PixPen Plaza</h1>
         <div className="flex justify-between">
           <div className="mr-[4rem]">
             <InfiniteScroll
