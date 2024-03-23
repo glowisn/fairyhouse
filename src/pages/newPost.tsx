@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -10,8 +9,6 @@ import { InsertImage, InsertPost } from "@/types/types";
 import { insertPost } from "@/apis/insertPost";
 import { uploadImage } from "@/apis/uploadImage";
 import { insertImage } from "@/apis/insertImage";
-
-export const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function NewPost() {
   const router = useRouter();
