@@ -1,4 +1,6 @@
-import { ReactQuill } from "../pages/NewPost";
+import dynamic from "next/dynamic";
+
+export const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 interface QuillEditorProps {
   value: string;
